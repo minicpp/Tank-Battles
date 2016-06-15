@@ -75,8 +75,15 @@ public class Application extends JPanel  implements Runnable, ActionListener  {
 	public BufferedImage loadImage(String path){
 		BufferedImage img = null;
 		try {
-		    img = ImageIO.read(new File(path));
+			File f = new File(path);
+			if(f.exists() && !f.isDirectory())
+				img = ImageIO.read(f);
+			else{
+				//System.out.println("Try to load image from resource in jar");
+				img = ImageIO.read(getClass().getResource("/"+path));
+			}
 		} catch (IOException e) {
+			System.out.println("Cannot find image file from the path:"+path);
 			System.out.println("IOException:"+e.getMessage());
 		}
 		return img;

@@ -7,7 +7,7 @@ import java.util.Random;
 
 import helper.Application;
 
-public class Enemy {
+public class EnemyTank {
 	Point pos;
 	int speed;
 	int bulletSpeed;
@@ -22,7 +22,7 @@ public class Enemy {
 	Random r = new Random();
 	int revivalCounter = 0;
 
-	public Enemy(Application app) {
+	public EnemyTank(Application app) {
 		this.app = app;
 		imageArray = new BufferedImage[4];
 		for (int i = 0; i < 4; ++i) {
@@ -50,7 +50,7 @@ public class Enemy {
 		return box;
 	}
 	
-	private void revival(Map map, Actor actor, Enemy[] enemyArray){
+	private void revival(Map map, MyTank actor, EnemyTank[] enemyArray){
 		
 		BoundingBox box;
 		BoundingBox tileBox = new BoundingBox();
@@ -59,7 +59,7 @@ public class Enemy {
 		for(Point point:pList){
 			boolean available = true;
 			tileBox.setBoundary(point.x*32, point.y*32, 32, 32);
-			for(Enemy enemy: enemyArray){
+			for(EnemyTank enemy: enemyArray){
 				box = enemy.getBoundingBox();
 				if(box.isCollision(tileBox)){
 					available = false;
@@ -94,7 +94,7 @@ public class Enemy {
 		}
 	}
 
-	public void artifcialIntelligenceControl(BoundingBox screen, Map map, Actor actor, Enemy[] enemyArray,
+	public void artifcialIntelligenceControl(BoundingBox screen, Map map, MyTank actor, EnemyTank[] enemyArray,
 			BulletSystem bulletSystem) {
 		if (dead && revivalCounter == 0){
 			this.revivalCounter = 30 + r.nextInt(100);
@@ -134,7 +134,7 @@ public class Enemy {
 		BoundingBox enemyBox;
 		boolean touchedOtherTank = false;
 		if (box.isContained(screen) && !map.collideObstacle(box, expectedX, expectedY, null)) {
-			for (Enemy enemy : enemyArray) {
+			for (EnemyTank enemy : enemyArray) {
 				if (enemy.dead || enemy == this)
 					continue;
 				enemyBox = enemy.getBoundingBox();

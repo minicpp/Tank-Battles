@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
 
 import com.sun.glass.events.KeyEvent;
 
-import game.Actor;
+import game.MyTank;
 import game.BoundingBox;
 import game.BulletSystem;
-import game.Enemy;
+import game.EnemyTank;
 import game.Map;
 import helper.Application;
 
@@ -25,12 +25,12 @@ import helper.Application;
 //color
 //background color
 //change color using counter and state
-public class Demo1 extends Application{
+public class Demo extends Application{
 
 	Color color;
 	
-	Actor actor;
-	Enemy[] enemyArray;
+	MyTank myTank;
+	EnemyTank[] enemyArray;
 	
 	BufferedImage stone;
 	Map map;
@@ -38,12 +38,13 @@ public class Demo1 extends Application{
 	BoundingBox screenBox;
 	BulletSystem bulletSystem;
 	
-	public Demo1(){
+	public Demo(){
 	}
 	
 	public static void main(String [] args){
-		Demo1 gameMain = new Demo1();
+		Demo gameMain = new Demo();
 		gameMain.setTitle("Demo - Tank Battles");
+		//BufferedImage image = gameMain.loadImage("img/abc.png");
 	}
 	
 	public void init(){	//run only once at the beginning of the application
@@ -54,17 +55,17 @@ public class Demo1 extends Application{
 		
 		
 		map = new Map(this);
-		map.createMapFromFile("img/map0.bmp");
+		map.createMapFromFile("img/map1.bmp");
 		map.loadImage();
 		Point actorBirthPosition = map.getActorBirthPlace();
 		
-		actor = new Actor(this);
-		actor.setBirthPlaceInMap(actorBirthPosition);
+		myTank = new MyTank(this);
+		myTank.setBirthPlaceInMap(actorBirthPosition);
 		
 		ArrayList<Point> enemyBirthPlaces = map.getEnemyBirthPlaces();
-		enemyArray = new Enemy[enemyBirthPlaces.size()];
+		enemyArray = new EnemyTank[enemyBirthPlaces.size()];
 		for(int i=0; i<enemyBirthPlaces.size(); ++i){
-			enemyArray[i] = new Enemy(this);
+			enemyArray[i] = new EnemyTank(this);
 			enemyArray[i].setBirthPlaceInMap(enemyBirthPlaces.get(i));
 		}
 		
@@ -75,17 +76,17 @@ public class Demo1 extends Application{
 	}
 	
 	public void update(){
-		bulletSystem.update(screenBox, map, actor, enemyArray);
-		actor.control(this.screenBox, map, this.enemyArray, bulletSystem);
+		bulletSystem.update(screenBox, map, myTank, enemyArray);
+		myTank.control(this.screenBox, map, this.enemyArray, bulletSystem);
 		
 		for(int i=0; i<enemyArray.length; ++i)
-			enemyArray[i].artifcialIntelligenceControl(screenBox, map, actor, enemyArray, bulletSystem);
+			enemyArray[i].artifcialIntelligenceControl(screenBox, map, myTank, enemyArray, bulletSystem);
 	}
 	
 	public void draw(){
 		boolean showBoundary = false;
 		map.draw(showBoundary);
-		actor.draw(showBoundary);
+		myTank.draw(showBoundary);
 		for(int i=0; i<enemyArray.length; ++i){
 			enemyArray[i].draw(showBoundary);
 		}

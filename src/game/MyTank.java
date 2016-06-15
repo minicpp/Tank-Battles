@@ -8,7 +8,7 @@ import com.sun.glass.events.KeyEvent;
 
 import helper.Application;
 
-public class Actor {
+public class MyTank {
 	Point pos;
 	int speed = 3;
 	int bulletSpeed = 10;
@@ -21,7 +21,7 @@ public class Actor {
 	int tankDirection = 0;//0 up, 1 right, 2 down, 3 left.
 	boolean dead;
 	
-	public Actor(Application app){
+	public MyTank(Application app){
 		this.app = app;
 		imageArray = new BufferedImage[4];
 		for(int i=0; i<4; ++i){
@@ -49,7 +49,7 @@ public class Actor {
 		return box;
 	}
 	
-	public void control(BoundingBox screen, Map map, Enemy[] enemyArray, BulletSystem bulletSystem){
+	public void control(BoundingBox screen, Map map, EnemyTank[] enemyArray, BulletSystem bulletSystem){
 		if(dead)
 			return;
 		int expectedX = pos.x;
@@ -79,7 +79,7 @@ public class Actor {
 		BoundingBox enemyBox;
 		boolean touchedEnemy = false;
 		if(box.isContained(screen) && !map.collideObstacle(box, expectedX, expectedY, null)){
-			for(Enemy enemy: enemyArray){
+			for(EnemyTank enemy: enemyArray){
 				if(enemy.dead)
 					continue;
 				enemyBox = enemy.getBoundingBox();

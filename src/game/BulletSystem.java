@@ -41,7 +41,7 @@ public class BulletSystem {
 		bulletList.add(new Bullet(centerPosX-8, centerPosY - 8, speedX, speedY, bulletType));
 	}
 	
-	public void update(BoundingBox screen, Map map, Actor actor, Enemy[] enemyArr){
+	public void update(BoundingBox screen, Map map, MyTank actor, EnemyTank[] enemyArr){
 		for(Iterator<Bullet> iterator = bulletList.iterator(); iterator.hasNext();){
 			Bullet bullet = iterator.next();
 			bullet.posX += bullet.speedX;
@@ -86,7 +86,7 @@ public class BulletSystem {
 				else{
 					if(bullet.bulletType == BulletSystem.ACTOR_BULLET){
 						//check enemy
-						for(Enemy enemy:enemyArr){
+						for(EnemyTank enemy:enemyArr){
 							BoundingBox box = enemy.getBoundingBox();
 							if(enemy.getDead() == false && box.isCollision(bullet.getBoundingBox())){
 								enemy.setDead(true);
