@@ -71,7 +71,7 @@ public class EnemyTank extends Tank {
 		}
 	}
 
-	public void control(BoundingBox screen, Map map, PlayerTank actor, Tank[] tankArray, BulletSystem bulletSystem) {
+	public void control(BoundingBox screen, Map map, Tank[] tankArray, BulletSystem bulletSystem) {
 
 		// AI strategy
 		if (dead && revivalCounter == 0) {
@@ -159,7 +159,7 @@ public class EnemyTank extends Tank {
 					break;
 				}
 
-				bulletSystem.shot(posX + 16, posY + 16, speedX, speedY, BulletSystem.ENEMY_BULLET);
+				bulletSystem.shoot(posX + 16, posY + 16, speedX, speedY, BulletSystem.ENEMY_BULLET);
 			}
 			coolDown = 0;
 		}

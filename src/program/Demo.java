@@ -41,9 +41,9 @@ public class Demo extends Application{
 		map.createMapFromFile("img/map0.bmp");
 		map.loadImage();
 		
-		Point actorBirthPosition = map.getActorBirthPlace();
+		Point playerBirthPosition = map.getPlayerBirthPlace();
 		playerTank = new PlayerTank(this);
-		playerTank.setBirthPlaceInMap(actorBirthPosition.x, actorBirthPosition.y);
+		playerTank.setBirthPlaceInMap(playerBirthPosition.x, playerBirthPosition.y);
 		
 		ArrayList<Point> enemyBirthPlaces = map.getEnemyBirthPlaces();
 		Point pos;
@@ -64,7 +64,7 @@ public class Demo extends Application{
 	}
 	
 	public void update(){
-		bulletSystem.update(screenBox, map, playerTank, enemyArray);
+		bulletSystem.update(screenBox, map, allTanks);
 		
 		for(Tank tank: allTanks)
 			tank.control(screenBox, map, allTanks, bulletSystem);

@@ -90,7 +90,6 @@ public class Tank {
 			
 		this.move(screen, map, tankArray);
 		this.shoot(bulletSystem);
-	
 	}
 	
 	public void move(BoundingBox screen, Map map, Tank[] tankArray){

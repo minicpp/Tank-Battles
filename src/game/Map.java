@@ -28,7 +28,7 @@ public class Map {
 	private int width;
 	private int height;
 
-	private Point actorBirthPlace;
+	private Point playerBirthPlace;
 	private ArrayList<Point> enemyBirthPlace = new ArrayList<Point>();
 	
 	private BoundingBox tileBox = new BoundingBox();
@@ -60,7 +60,7 @@ public class Map {
 				color = color & 0x00FFFFFF;
 				gameMap[y][x] = color;
 				if (color == GREEN) {
-					this.actorBirthPlace = new Point(x, y);
+					this.playerBirthPlace = new Point(x, y);
 				}
 				if (color == RED) {
 					this.enemyBirthPlace.add(new Point(x, y));
@@ -74,8 +74,8 @@ public class Map {
 		return this.gameMap;
 	}
 
-	public Point getActorBirthPlace() {
-		return this.actorBirthPlace;
+	public Point getPlayerBirthPlace() {
+		return this.playerBirthPlace;
 	}
 	
 	public ArrayList<Point> getEnemyBirthPlaces(){

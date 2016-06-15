@@ -66,7 +66,6 @@ public class PlayerTank extends Tank{
 		
 		if(app.keyPressed(KeyEvent.VK_SPACE) && coolDown == coolDownRequiredCounts){
 			coolDown = 0;
-			System.out.println("shoot");
 			int speedX = 0, speedY = 0;
 			switch(tankDirection){
 			case 0:
@@ -82,7 +81,7 @@ public class PlayerTank extends Tank{
 				speedX = -bulletSpeed;
 				break;
 			}
-			bulletSystem.shot(posX + 16, posY + 16, speedX, speedY, BulletSystem.ACTOR_BULLET);
+			bulletSystem.shoot(posX + 16, posY + 16, speedX, speedY, BulletSystem.PLAYER_BULLET);
 		}
 	}
 	
