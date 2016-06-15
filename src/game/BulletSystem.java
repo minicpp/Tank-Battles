@@ -41,7 +41,7 @@ public class BulletSystem {
 		bulletList.add(new Bullet(centerPosX-8, centerPosY - 8, speedX, speedY, bulletType));
 	}
 	
-	public void update(BoundingBox screen, Map map, MyTank actor, EnemyTank[] enemyArr){
+	public void update(BoundingBox screen, Map map, PlayerTank actor, EnemyTank[] enemyArr){
 		for(Iterator<Bullet> iterator = bulletList.iterator(); iterator.hasNext();){
 			Bullet bullet = iterator.next();
 			bullet.posX += bullet.speedX;
@@ -92,7 +92,7 @@ public class BulletSystem {
 								enemy.setDead(true);
 								iterator.remove();
 								ani = explode.cloneAnmiation();
-								ani.play(enemy.pos.x, enemy.pos.y, false);
+								ani.play(enemy.posX, enemy.posY, false);
 								animationList.add(ani);
 								++score;
 								app.setTitle("Demo - Tank Battles - Killed:"+score);
@@ -106,7 +106,7 @@ public class BulletSystem {
 							actor.setDead(true);
 							iterator.remove();
 							ani = explode.cloneAnmiation();
-							ani.play(actor.pos.x, actor.pos.y, false);
+							ani.play(actor.getPosX(), actor.getPosY(), false);
 							animationList.add(ani);
 							ani.flag = 3;
 						}
