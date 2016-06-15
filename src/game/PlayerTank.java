@@ -17,14 +17,11 @@ public class PlayerTank extends Tank{
 		//properties of the tank
 		tankDirection = 0;
 		presentImage = imageArray[tankDirection];
-		coolDownRequiredCounts = 30;
+		coolDownRequiredCounts = 15;
 		coolDown = coolDownRequiredCounts;
 		tankSpeed = 3;
 		bulletSpeed = 10;
 	}
-	
-	
-	
 	
 	public void move(BoundingBox screen, Map map, Tank[] tankArray){
 		int expectedX = posX;

@@ -13,7 +13,7 @@ import game.EnemyTank;
 import game.Map;
 import helper.Application;
 
-public class Demo extends Application{
+public class GameMain extends Application{
 
 	Color color;
 	
@@ -27,18 +27,18 @@ public class Demo extends Application{
 	BoundingBox screenBox;
 	BulletSystem bulletSystem;
 	
-	public Demo(){
+	public GameMain(){
 	}
 	
 	public static void main(String [] args){
-		Demo gameMain = new Demo();
-		gameMain.setTitle("Demo - Tank Battles");
+		GameMain gameMain = new GameMain();
+		gameMain.setTitle("Game - Tank Battles");
 	}
 	
 	public void init(){	//run only once at the beginning of the application
 		color = new Color(0,0,0);
 		map = new Map(this);
-		map.createMapFromFile("img/map0.bmp");
+		map.createMapFromFile("img/map2.bmp");
 		map.loadImage();
 		
 		Point playerBirthPosition = map.getPlayerBirthPlace();

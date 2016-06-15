@@ -128,13 +128,13 @@ public class BulletSystem {
 			if (ani.isStop()) {
 				if (ani.flag == 1) {
 					JOptionPane.showMessageDialog(app.winFrame,
-							"Friendly Fire! Mission Failed! The headquarter is destroyed.");
+							"Friendly Fire! Game Over! The headquarter is destroyed.\n Your score:"+this.score);
 					System.exit(0);
 				} else if (ani.flag == 2) {
-					JOptionPane.showMessageDialog(app.winFrame, "Mission Failed! The headquarter is destroyed.");
+					JOptionPane.showMessageDialog(app.winFrame, "Game Over! The headquarter is destroyed.\n Your score:"+this.score);
 					System.exit(0);
 				} else if (ani.flag == 3) {
-					JOptionPane.showMessageDialog(app.winFrame, "Mission Failed! Your tank is destroyed.");
+					JOptionPane.showMessageDialog(app.winFrame, "Game Over! Your tank is destroyed.\n Your score:"+this.score);
 					System.exit(0);
 				}
 				iterator.remove();
