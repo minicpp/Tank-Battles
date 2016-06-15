@@ -7,6 +7,7 @@ import helper.Application;
 
 public class PlayerTank extends Tank{
 
+	private int credits;
 	
 	public PlayerTank(Application app){
 		super(app);
@@ -21,6 +22,15 @@ public class PlayerTank extends Tank{
 		coolDown = coolDownRequiredCounts;
 		tankSpeed = 3;
 		bulletSpeed = 10;
+		credits = 10;
+	}
+	
+	public int getCredits(){
+		return credits;
+	}
+	
+	public void setCredits(int credits){
+		this.credits = credits;
 	}
 	
 	public void move(BoundingBox screen, Map map, Tank[] tankArray){

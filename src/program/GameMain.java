@@ -38,12 +38,14 @@ public class GameMain extends Application{
 	public void init(){	//run only once at the beginning of the application
 		color = new Color(0,0,0);
 		map = new Map(this);
-		map.createMapFromFile("img/map2.bmp");
+		map.createMapFromFile("img/map5.bmp");
 		map.loadImage();
 		
 		Point playerBirthPosition = map.getPlayerBirthPlace();
 		playerTank = new PlayerTank(this);
 		playerTank.setBirthPlaceInMap(playerBirthPosition.x, playerBirthPosition.y);
+		
+		this.setTitle("Game - Tank Battles - Credits:"+playerTank.getCredits() + " - Score:0");
 		
 		ArrayList<Point> enemyBirthPlaces = map.getEnemyBirthPlaces();
 		Point pos;
@@ -64,7 +66,7 @@ public class GameMain extends Application{
 	}
 	
 	public void update(){
-		bulletSystem.update(screenBox, map, allTanks);
+		bulletSystem.update(screenBox, map, allTanks, this.playerTank);
 		
 		for(Tank tank: allTanks)
 			tank.control(screenBox, map, allTanks, bulletSystem);

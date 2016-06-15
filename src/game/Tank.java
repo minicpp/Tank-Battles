@@ -26,7 +26,7 @@ public class Tank {
 	protected int coolDown;
 	
 	//life
-	protected boolean dead;	
+	protected boolean dead;
 	
 	//boundary
 	protected BoundingBox box = new BoundingBox();

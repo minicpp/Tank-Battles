@@ -44,7 +44,7 @@ public class BulletSystem {
 		bulletList.add(new Bullet(centerPosX - 8, centerPosY - 8, speedX, speedY, bulletType));
 	}
 
-	public void update(BoundingBox screen, Map map, Tank[] tankArray) {
+	public void update(BoundingBox screen, Map map, Tank[] tankArray, PlayerTank playerTank) {
 		
 		//update bullet
 		for (Iterator<Bullet> iterator = bulletList.iterator(); iterator.hasNext();) {
@@ -102,19 +102,27 @@ public class BulletSystem {
 							ani.play(tank.posX, tank.posY, false);
 							animationList.add(ani);
 							++score;
-							app.setTitle("Demo - Tank Battles - Killed:" + score);
+							//app.setTitle("Demo - Tank Battles - Killed:" + score);
+							app.setTitle("Game - Tank Battles - Credits:"+playerTank.getCredits() + " - Score:" + score);
 						}
 					}
 					else if(bullet.bulletType == BulletSystem.ENEMY_BULLET && tank instanceof PlayerTank){
 						box = tank.getBoundingBox();
 						if(box.isCollision(bullet.getBoundingBox())){
-							tank.setDead(true);
+							
 							iterator.remove(); //the bullet is removed, because it hits an enemy
 							//play animation
 							ani = explode.cloneAnmiation();
 							ani.play(tank.posX, tank.posY, false);
 							animationList.add(ani);
-							ani.flag = 3; //game over
+							int credit = playerTank.getCredits();
+							--credit;
+							playerTank.setCredits(credit);
+							if(credit == 0){
+								ani.flag = 3; //game over
+								tank.setDead(true);
+							}
+							app.setTitle("Game - Tank Battles - Credits:"+ credit + " - Score:" + score);
 						}
 					}
 				}
