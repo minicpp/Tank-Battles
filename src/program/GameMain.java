@@ -75,7 +75,7 @@ public class GameMain extends Application{
 	
 	public void draw(){
 		boolean showBoundary = false;
-		map.draw(showBoundary);
+		map.draw(showBoundary, false);
 		for(int i=0; i<allTanks.length; ++i){
 			allTanks[i].draw(showBoundary);
 		}

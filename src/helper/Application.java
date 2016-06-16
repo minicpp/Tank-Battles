@@ -153,6 +153,15 @@ public class Application extends JPanel  implements Runnable, ActionListener  {
 		graphic.drawRect (left, top, width, height);
 		graphic.setColor(old);
 	}
+	
+	public void drawRectangle(int left, int top, int width, int height, int color){
+		Color old = graphic.getColor();
+		color |= 0xFF000000;
+		Color presentColor = new Color(color);
+		graphic.setColor(presentColor);
+		graphic.fillRect(left, top, width, height);
+		graphic.setColor(old);
+	}
 
 	public void drawImage(Image image, int x, int y){
 		//Graphics2D g2d = (Graphics2D)this.graphic;

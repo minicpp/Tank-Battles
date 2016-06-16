@@ -118,7 +118,7 @@ public class Map {
 		return false;
 	}
 
-	public void draw(boolean boundary) {
+	public void draw(boolean boundary, boolean colorMode) {
 		int color;
 		int posX;
 		int posY;
@@ -127,10 +127,8 @@ public class Map {
 			for (int x = 0; x < width; ++x) {
 				color = gameMap[y][x];
 				posX = x * 32;
+				if(!colorMode){
 				switch (color) {
-				case WHITE:
-					this.app.drawImage(grass, posX, posY);
-					break;
 				case BLACK:
 					this.app.drawImage(stone, posX, posY);
 					break;
@@ -145,7 +143,12 @@ public class Map {
 					break;
 				case YELLOW:
 					this.app.drawImage(headquarters, posX, posY);
-				}
+				default:
+					this.app.drawImage(grass, posX, posY);
+					break;
+				}}
+				else
+					app.drawRectangle(posX, posY, 32, 32, color);
 				if(boundary){
 
 					this.app.drawBoundary(posX, posY, 32, 32);
