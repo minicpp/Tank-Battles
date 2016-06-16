@@ -38,7 +38,7 @@ public class GameMain extends Application{
 	public void init(){	//run only once at the beginning of the application
 		color = new Color(0,0,0);
 		map = new Map(this);
-		map.createMapFromFile("img/map5.bmp");
+		map.createMapFromFile("img/map6.bmp");
 		map.loadImage();
 		
 		Point playerBirthPosition = map.getPlayerBirthPlace();
